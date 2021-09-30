@@ -1,4 +1,4 @@
-.PostDetails {
+.postDetails {
   &__post {
     padding: 10px 0 15px;
   }
@@ -7,13 +7,18 @@
     text-align: right;
   }
 
+  &__button {
+    margin-bottom: 10px;
+  }
+
   &__list {
+    margin: 0;
     list-style: none;
   }
 
   &__list-item {
-    margin: 5px 0;
     display: flex;
+    margin-bottom: 10px;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
@@ -28,7 +33,7 @@
     );
   }
 
-  &__remove-button {
+  &__remove-button.button {
     min-width: 20px;
     color: inherit;
     background-color: transparent;

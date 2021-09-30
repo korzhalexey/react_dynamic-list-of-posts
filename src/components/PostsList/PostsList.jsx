@@ -1,37 +1,45 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import PostItem from '../PostItem/PostItem';
+import { PostType } from '../../types';
+
 import './PostsList.scss';
 
-export const PostsList = () => (
-  <div className="PostsList">
+export const PostsList = ({
+  posts,
+  postId,
+  changeSidebarVisibility,
+  setPostComments,
+  changeCommentsLoaded,
+}) => (
+  <div className="postsList">
     <h2>Posts:</h2>
 
-    <ul className="PostsList__list">
-      <li className="PostsList__item">
-        <div>
-          <b>[User #1]: </b>
-          sunt aut facere repellat provident occaecati excepturi optio
-        </div>
-        <button
-          type="button"
-          className="PostsList__button button"
-        >
-          Close
-        </button>
-      </li>
-
-      <li className="PostsList__item">
-        <div>
-          <b>[User #2]: </b>
-          et ea vero quia laudantium autem
-        </div>
-
-        <button
-          type="button"
-          className="PostsList__button button"
-        >
-          Open
-        </button>
-      </li>
+    <ul className="postsList__list">
+      {
+        posts.map(post => (
+          <li
+            className="postsList__item"
+            key={post.id}
+          >
+            <PostItem
+              post={post}
+              postId={postId}
+              changeSidebarVisibility={changeSidebarVisibility}
+              setPostComments={setPostComments}
+              changeCommentsLoaded={changeCommentsLoaded}
+            />
+          </li>
+        ))
+      }
     </ul>
   </div>
 );
+
+PostsList.propTypes = {
+  posts: PropTypes.arrayOf(PostType).isRequired,
+  postId: PropTypes.number.isRequired,
+  changeSidebarVisibility: PropTypes.func.isRequired,
+  setPostComments: PropTypes.func.isRequired,
+  changeCommentsLoaded: PropTypes.func.isRequired,
+};
